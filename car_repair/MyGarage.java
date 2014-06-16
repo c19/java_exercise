@@ -6,7 +6,7 @@ DEF-456 5h 120€
 GHI-789 4h 80€
 ZZZ-999 1h 50€
 */
-public class MyGarage implements Garage {
+public class MyGarage{			// implements Garage {
 	private Car[] cars;
 	private int[][] profit;       // profit[i][j]    the maxium profit for first i items with a j capacity package.
 	private int item_num;
@@ -31,7 +31,7 @@ public class MyGarage implements Garage {
 		}
 		System.out.println();
 	}
-	public void repair(){
+	public String repair(){
 		for (int i = 1; i <= item_num; i++) {
 			for (int j = 1; j <= capacity ; j++) {
 				if (j < cars[i-1].repairHours) {  // j hours not enough for this car
@@ -43,12 +43,17 @@ public class MyGarage implements Garage {
 			print_talbe(profit);
 		}
 		int j = capacity;
+		// List<Car> result = new LinkedList<Car>();
+		String result = "Cars chosen to repair:\n";
 		for (int i = item_num; i != 0; i--) {
 			if (profit[i][j] > profit[i-1][j]) {
-				System.out.println(cars[i-1]);
 				j -= cars[i-1].repairHours;
+				result += cars[i-1].toString();
+				result += "\n";
 			}
 		}
-		System.out.println(profit[item_num][capacity]);
+		result += "Total revenue:\n" + profit[item_num][capacity];
+		System.out.println(result);
+		return result;
 	}
 }

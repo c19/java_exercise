@@ -11,5 +11,5 @@ public interface Garage {
 * @param availableHours The number of hours you have to repair the cars
 * @return Set of cars that have been repaired
 */
-public void repair();
+public List<Car> repair();
 }
